@@ -3,7 +3,7 @@ package com.example.highschoolalltime;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-
+//정보수정 창
 public class withdraw extends AppCompatActivity {
 
     @Override

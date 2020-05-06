@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-
+//mypage탭. 정보수정과 로그아웃 회원탈퇴를 할수 있는 곳
 public class Mypage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
