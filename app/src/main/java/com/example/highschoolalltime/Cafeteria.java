@@ -158,7 +158,6 @@ public class Cafeteria extends Activity implements OnItemClickListener, OnClickL
         final AlertDialog.Builder calendar_cafeteria = new AlertDialog.Builder(Cafeteria.this);
         calendar_cafeteria.setIcon(R.mipmap.ic_launcher);
         calendar_cafeteria.setTitle("오늘의 급식");
-        //calendar_cafeteria.setMessage(WhatDate+"\n현재 달:"+WhatMonth);
         //DB와 연동하여 저장된 Text보여주기(실패)
         Response.Listener<String> reponseListener = new Response.Listener<String>() {
             @Override
@@ -185,13 +184,13 @@ public class Cafeteria extends Activity implements OnItemClickListener, OnClickL
         //급식추가하는 edittext구현
         final EditText edit_cafeteria = new EditText(Cafeteria.this);
         calendar_cafeteria.setView(edit_cafeteria);
-        //추가버튼 눌렀을때 DB에 값 저장(실패)
+        //추가버튼 눌렀을때 DB에 값 저장
         calendar_cafeteria.setPositiveButton("추가", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(final DialogInterface dialog, int which) {
                 //Menu에 String값으로 EditText저장
                 String Menu = edit_cafeteria.getText().toString();
-                //DB에 값 넣어주기(실패)
+                //DB에 값 넣어주기
                 Response.Listener responseListener = new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -222,8 +221,6 @@ public class Cafeteria extends Activity implements OnItemClickListener, OnClickL
         calendar_cafeteria.setNegativeButton("취소", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                Toast.makeText(getApplicationContext(),"취소.",
-                        Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
             }
         });
