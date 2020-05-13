@@ -3,7 +3,9 @@ package com.example.highschoolalltime;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import com.example.highschoolalltime.R;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.Volley;
 import com.example.highschoolalltime.adapter.cafeteria_Adapter;
 import com.example.highschoolalltime.domain.DayInfo;
 //import com.example.highschoolalltime.domain.ExToday;
@@ -21,6 +23,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 //각 날짜에 대한 클릭이벤트와 버튼의 클릭이벤트를 구현하기위한 implements
 public class Cafeteria extends Activity implements OnItemClickListener, OnClickListener{
     public static int SUNDAY = 1;
@@ -146,28 +153,77 @@ public class Cafeteria extends Activity implements OnItemClickListener, OnClickL
     @Override
     public void onItemClick(AdapterView<?> parent, View v, int position, long arg3) {
         //다이얼로그 창 구현
+        final int WhatDate = position;
+        final int WhatMonth = mThisMonthCalendar.get(Calendar.MONTH)+1;
         final AlertDialog.Builder calendar_cafeteria = new AlertDialog.Builder(Cafeteria.this);
         calendar_cafeteria.setIcon(R.mipmap.ic_launcher);
         calendar_cafeteria.setTitle("오늘의 급식");
-        //DB와 연동하여 저장된 Text보여주기(예정)
-        calendar_cafeteria.setMessage("DB에 저장된 메뉴");
+        //calendar_cafeteria.setMessage(WhatDate+"\n현재 달:"+WhatMonth);
+        //DB와 연동하여 저장된 Text보여주기(실패)
+        Response.Listener<String> reponseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    boolean success = jsonObject.getBoolean("success");
+                    if(success) {
+                        calendar_cafeteria.setMessage(jsonObject.getString("Menu"));
+                    }else {
+                        Toast.makeText(getApplicationContext(), "급식이없습니다.",
+                                Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                }catch(JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        //volley를 사용해 서버로 요청
+        Cafeteria_Request cafeteria_request = new Cafeteria_Request(WhatMonth, WhatDate, reponseListener);
+        RequestQueue queue = Volley.newRequestQueue(Cafeteria.this);
+        queue.add(cafeteria_request);
         //급식추가하는 edittext구현
         final EditText edit_cafeteria = new EditText(Cafeteria.this);
         calendar_cafeteria.setView(edit_cafeteria);
-
-        //추가했을때
+        //추가버튼 눌렀을때 DB에 값 저장(실패)
         calendar_cafeteria.setPositiveButton("추가", new DialogInterface.OnClickListener() {
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-                String result = edit_cafeteria.getText().toString();
-                //DB에 저장(예정)
-                dialog.dismiss();
+            public void onClick(final DialogInterface dialog, int which) {
+                //Menu에 String값으로 EditText저장
+                String Menu = edit_cafeteria.getText().toString();
+                //DB에 값 넣어주기(실패)
+                Response.Listener responseListener = new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try{
+                            JSONObject jsonObject = new JSONObject(response);
+                            boolean success = jsonObject.getBoolean("success");
+                            if(success) {
+                                Toast.makeText(getApplicationContext(),"급식을 추가하였습니다.",
+                                        Toast.LENGTH_SHORT).show();
+                                dialog.dismiss();
+                            }else {
+                                Toast.makeText(getApplicationContext(),"실패했습니다.",
+                                        Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+                        }catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                };
+                //Volley를 이용해 서버로 요청
+                Register_Cafe register_cafe = new Register_Cafe(WhatMonth, WhatDate, Menu, responseListener);
+                RequestQueue queue = Volley.newRequestQueue(Cafeteria.this);
+                queue.add(register_cafe);
             }
         });
         //취소했을때
         calendar_cafeteria.setNegativeButton("취소", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                Toast.makeText(getApplicationContext(),"취소.",
+                        Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
             }
         });
