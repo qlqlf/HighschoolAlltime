@@ -13,13 +13,12 @@ public class Register_Cafe extends StringRequest {
     //string배열로 저장
     private Map<String, String> map;
 
-    public Register_Cafe(int WhatMonth, int WhatDate, String Menu, Response.Listener<String> listener) {
+    public Register_Cafe(String Menu, String WhatDate, Response.Listener<String> listener) {
         super(Method.POST, URL, listener, null);
         //map에 값넣기
         map = new HashMap<>();
-        map.put("WhatMonth",WhatMonth+"");
-        map.put("WhatDate",WhatDate+"");
         map.put("Menu",Menu);
+        map.put("WhatDate",WhatDate);
     }
     //map리턴
     @Override

@@ -7,16 +7,17 @@ import com.android.volley.toolbox.StringRequest;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Cafeteria_Request extends StringRequest {
+public class Update_Cafe extends StringRequest {
     //서버 URL설정 (PHP파일연동)
-    final static private  String URL = "http://highschool.dothome.co.kr/Cafeteria.php";
+    final static private  String URL = "http://highschool.dothome.co.kr/Update_Cafe.php";
     //string배열로 저장
     private Map<String, String> map;
 
-    public Cafeteria_Request(String WhatDate, Response.Listener<String> listener) {
+    public Update_Cafe(String Menu, String WhatDate, Response.Listener<String> listener) {
         super(Method.POST, URL, listener, null);
-    //map에 저장
+        //map에 값넣기
         map = new HashMap<>();
+        map.put("Menu",Menu);
         map.put("WhatDate",WhatDate);
     }
     //map리턴

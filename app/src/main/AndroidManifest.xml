@@ -12,19 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Design"
         android:usesCleartextTraffic="true">
-        <!--현재 급식(cafeteria)부분을 만들고 있으므로 메인 화면을 급식으로 설정해 주었다.-->
-        <activity android:name=".Cafeteria">
-
-            <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-        </activity>
-        <activity android:name=".Login" />
+        <activity android:name=".Cafeteria" />
         <activity android:name=".ChangeInformation" />
         <activity android:name=".withdraw" />
+        <!--현재 MyPage부분을 만들고 있으므로 메인 화면을 급식으로 설정해 주었다.-->
         <activity android:name=".Mypage">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
         </activity>
     </application>
 
