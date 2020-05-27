@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--drawable폴더에 있는 gv_cafe_day, 각 날짜의 배경 색을 입힘-->
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
     <solid android:color="#FFFFFF"/>
     <!--흰바탕에 검은색태두리 파일-->

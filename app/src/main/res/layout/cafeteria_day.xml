@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--cafeteria_day, 급식 달력의 각 날짜의 xml-->
 <LinearLayout
     android:id="@+id/day_cell_ll_background"
     xmlns:android="http://schemas.android.com/apk/res/android"

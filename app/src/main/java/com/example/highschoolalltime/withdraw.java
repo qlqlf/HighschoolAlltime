@@ -1,4 +1,4 @@
-//회원탈퇴 구현 class
+//withdraw, 회원탈퇴 구현 class
 package com.example.highschoolalltime;
 
 import androidx.appcompat.app.AppCompatActivity;

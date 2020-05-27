@@ -1,3 +1,4 @@
+//Delet_User, DB에 저장된 User의 정보를 DELET하는 php와 연결하는 클래스
 package com.example.highschoolalltime;
 
 import com.android.volley.AuthFailureError;

@@ -1,3 +1,4 @@
+//Update_User, DB에 저장된 User의 정보를 UPDATE하는 php와 연결하는 클래스
 package com.example.highschoolalltime;
 
 import com.android.volley.AuthFailureError;
@@ -9,7 +10,7 @@ import java.util.Map;
 
 public class Update_User extends StringRequest {
     //서버 URL설정 (PHP파일연동)
-    final static private  String URL = "http://highschool.dothome.co.kr/Update_Cafe.php";
+    final static private  String URL = "http://highschool.dothome.co.kr/Update_User.php";
     //string배열로 저장
     private Map<String, String> map;
 

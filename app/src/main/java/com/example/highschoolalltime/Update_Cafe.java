@@ -1,3 +1,4 @@
+//Update_Cafe, 급식표 DB안에 급식을 UPDATE하는 php와 연결하는 클래스
 package com.example.highschoolalltime;
 
 import com.android.volley.AuthFailureError;

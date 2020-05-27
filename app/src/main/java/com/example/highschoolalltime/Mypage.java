@@ -1,21 +1,12 @@
-//mypage 구현 class
+//Mypage, mypage 구현 class
 package com.example.highschoolalltime;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.toolbox.Volley;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 //mypage탭. 정보수정과 로그아웃 회원탈퇴를 할수 있는 곳
 public class Mypage extends AppCompatActivity {
     @Override

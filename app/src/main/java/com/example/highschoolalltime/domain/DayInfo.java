@@ -1,5 +1,6 @@
+//domain폴더안에 있는 Dayinfo, 날짜정보를 저장한 클래스
 package com.example.highschoolalltime.domain;
-/*하루의 날짜정보를 저장하는 클래스이다.*/
+
 public class DayInfo
 {
     private String day;

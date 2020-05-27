@@ -1,3 +1,4 @@
+//Register_Cafe, 급식DB에 INSERT하여 급식을 추가해주는 php와 연결하는 클래스
 package com.example.highschoolalltime;
 
 import com.android.volley.AuthFailureError;

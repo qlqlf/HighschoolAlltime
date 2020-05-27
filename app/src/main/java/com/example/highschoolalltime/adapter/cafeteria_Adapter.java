@@ -1,3 +1,4 @@
+//adapter폴더 속의 cafeteria_Adapter, 달력의 gridview사용에 필요한 adapter클래스
 package com.example.highschoolalltime.adapter;
 
 import java.util.ArrayList;
